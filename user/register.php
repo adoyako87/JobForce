@@ -41,7 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         mysqli_stmt_bind_param($stmt, "ssssssssi", $firstName, $lastName, $phone, $address, $workStatus, $jobPositions, $jobIndustries, $skills, $user_id);
         mysqli_stmt_execute($stmt);
         if (mysqli_stmt_affected_rows($stmt) > 0) {
-            echo "<p>Registration complete.</p>";
+            header("Location: registration_complete.php");
+            exit;
         } else {
             echo "<p>Error: Unable to complete registration. Please try again.</p>";
         }
