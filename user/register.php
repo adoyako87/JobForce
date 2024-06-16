@@ -41,7 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         mysqli_stmt_bind_param($stmt, "ssssssssi", $firstName, $lastName, $phone, $address, $workStatus, $jobPositions, $jobIndustries, $skills, $user_id);
         mysqli_stmt_execute($stmt);
         if (mysqli_stmt_affected_rows($stmt) > 0) {
-            header("Location: registration_complete.php");
+            // Store user's email in session
+            $sql = "SELECT Email FROM User WHERE ID = ?";
+            $stmt = mysqli_prepare($conn, $sql);
+            mysqli_stmt_bind_param($stmt, "i", $user_id);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt, $user_email);
+            mysqli_stmt_fetch($stmt);
+            $_SESSION['user_email'] = $user_email;
+
+            header("Location: verification.php");
             exit;
         } else {
             echo "<p>Error: Unable to complete registration. Please try again.</p>";

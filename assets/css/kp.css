@@ -115,3 +115,7 @@ button:hover {
 .skill i, .job-position i, .job-industry i {
     margin-left: 5px;
 }
+.error-message {
+    color: red;
+    margin-bottom: 20px;
+}
