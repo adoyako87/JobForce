@@ -1,0 +1,130 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f3f2ef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.job-post-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    margin: 20px auto;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.job-post-title {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.job-post-form .job-post-group {
+    margin-bottom: 20px;
+}
+
+.job-post-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.job-post-input,
+.job-post-select,
+.job-post-textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.job-post-input:focus,
+.job-post-select:focus,
+.job-post-textarea:focus {
+    border-color: #0073b1;
+}
+
+.job-post-textarea {
+    height: 150px;
+}
+
+.job-post-button {
+    background-color: #0073b1;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.job-post-button:hover {
+    background-color: #005582;
+}
+
+.job-post-status {
+    display: flex;
+    align-items: center;
+}
+
+.job-post-status label {
+    margin-right: 15px;
+}
+
+.job-post-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.job-post-section .job-post-group {
+    width: calc(50% - 10px);
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .job-post-section .job-post-group {
+        width: 100%;
+    }
+
+    .job-post-container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .job-post-title {
+        font-size: 1.5em;
+    }
+
+    .job-post-input,
+    .job-post-select,
+    .job-post-textarea {
+        padding: 10px;
+    }
+
+    .job-post-button {
+        padding: 12px;
+    }
+}
