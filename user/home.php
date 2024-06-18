@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -9,6 +8,24 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
+
+// Database connection
+include '../includes/dbconn.php';
+
+// Fetch user details
+$sql = "SELECT First_Name, Last_Name, about, username FROM user WHERE ID = ?";
+$stmt = $conn->prepare($sql);
+if (!$stmt) {
+    die("Prepare statement failed: " . $conn->error);
+}
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$stmt->bind_result($first_name, $last_name, $about, $username);
+$stmt->fetch();
+$stmt->close();
+
+// Store username in session
+$_SESSION['username'] = $username;
 ?>
 
 <!DOCTYPE html>
@@ -17,66 +34,15 @@ $user_id = $_SESSION['user_id'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Job Force</title>
-    <link rel="stylesheet" href="../assets/css/kp.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f3f2ef;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-        }
-
-        h2 {
-            margin-top: 0;
-            color: #333;
-            font-size: 1.8em;
-            font-weight: bold;
-        }
-
-        p {
-            color: #666;
-            font-size: 1em;
-            margin: 20px 0;
-        }
-
-        .btn {
-            background-color: #0073b1;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1em;
-            width: 100%;
-            margin: 20px 0 10px;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            background-color: #005582;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/home.css">
 </head>
 <body>
     <div class="container">
-        <h2>Welcome to Job Force</h2>
-        <p>You have successfully logged in. Explore our platform and find the best job opportunities for you.</p>
+        <div class="profile-info">
+            <h2><?php echo htmlspecialchars($first_name) . " " . htmlspecialchars($last_name); ?></h2>
+            <p><?php echo htmlspecialchars($about); ?></p>
+            <a href="jobpost_dashboard.php" class="btn">Post a Job</a>
+        </div>
     </div>
 </body>
 </html>
