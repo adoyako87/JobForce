@@ -42,6 +42,7 @@ $_SESSION['username'] = $username;
             <h2><?php echo htmlspecialchars($first_name) . " " . htmlspecialchars($last_name); ?></h2>
             <p><?php echo htmlspecialchars($about); ?></p>
             <a href="jobpost_dashboard.php" class="btn">Post a Job</a>
+            <a href="submit_ticket.php" class="btn">Post a Job</a>
         </div>
     </div>
 </body>
